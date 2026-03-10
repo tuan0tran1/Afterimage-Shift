@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 7f;
     public Transform respawnPoint;
+    public AudioSource jumpSound;
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -57,6 +58,10 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = Vector2.zero;
         GameManager.Instance.Lose();
+    }
+    void Jump()
+    {
+        jumpSound.Play();
     }
 
 }

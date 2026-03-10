@@ -7,7 +7,7 @@ TagManager:
   - Ground
   - Trap
   - Enemy
-  - Coin
+  - Ghost
   layers:
   - Default
   - TransparentFX

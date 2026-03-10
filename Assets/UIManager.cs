@@ -15,13 +15,21 @@ public class UIManager : MonoBehaviour
     public void NextLevel()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        int nextLevel = currentLevel + 1;
+
+        PlayerPrefs.SetInt("UnlockedLevel", nextLevel);
+        PlayerPrefs.Save();
+
+        SceneManager.LoadScene(nextLevel);
     }
 
     public void StartGame()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);
+        PlayerPrefs.DeleteAll();
     }
 
     public void QuitGame()
@@ -42,5 +50,16 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;
         if (pausePanel != null)
             pausePanel.SetActive(false);
+    }
+
+    public void LoadLevel(int levelIndex)
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(levelIndex);
+    }
+
+    public void OpenIntroduction()
+    {
+        SceneManager.LoadScene("Introduction");
     }
 }

@@ -1,14 +1,18 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public PlayerRecorder player;
+    public GameObject ghostPrefab;
+    public Transform respawnPoint;
 
-    public int totalCoins;
-    private int currentCoins;
+    private float timer = 20f;
+    private bool secondRun = false;
 
-    public TextMeshProUGUI coinText;
+    public TextMeshProUGUI timerText; // Added for Timer UI
     public GameObject winPanel;
     public GameObject losePanel;
 
@@ -23,25 +27,49 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
-        UpdateUI();
         winPanel.SetActive(false);
         losePanel.SetActive(false);
     }
 
-    public void AddScore(int value)
+    void Update()
     {
-        currentCoins += value;
-        UpdateUI();
-
-        if (currentCoins >= totalCoins)
+        if (timer > 0)
         {
-            Win();
+            timer -= Time.deltaTime;
+            
+            // Update the Timer UI every frame
+            if (timerText != null)
+            {
+                timerText.text = "Time: " + Mathf.Max(0, Mathf.Ceil(timer)).ToString();
+            }
+        }
+
+        if (timer <= 0)
+        {
+            if (!secondRun)
+            {
+                StartSecondRun();
+            }
         }
     }
-
-    void UpdateUI()
+    void StartSecondRun()
     {
-        coinText.text = currentCoins + " / " + totalCoins;
+        secondRun = true;
+
+        List<Vector3> record = player.GetPositions();
+
+        GameObject ghost = Instantiate(
+            ghostPrefab,
+            respawnPoint.position,
+            Quaternion.identity
+        );
+
+        ghost.GetComponent<GhostReplay>().StartReplay(record);
+
+        player.transform.position = respawnPoint.position;
+        player.ClearPositions(); // Quan trọng: Phải xóa lịch sử để chạy lại
+
+        timer = 20f;
     }
 
     public void Win()

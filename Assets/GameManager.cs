@@ -87,7 +87,23 @@ public class GameManager : MonoBehaviour
             Quaternion.identity
         );
 
-        ghost.GetComponent<GhostReplay>().StartReplay(record);
+        GhostReplay replay = ghost.GetComponent<GhostReplay>();
+        if (replay == null)
+        {
+            replay = ghost.AddComponent<GhostReplay>();
+        }
+        
+        // Đảm bảo Bóng ma có khối lượng vật lý (nhưng xuyên thấu) để kích hoạt được Công tắc/Cần gạt
+        Rigidbody2D rb = ghost.GetComponent<Rigidbody2D>();
+        if (rb == null) rb = ghost.AddComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Kinematic;
+
+        BoxCollider2D bc = ghost.GetComponent<BoxCollider2D>();
+        if (bc == null) bc = ghost.AddComponent<BoxCollider2D>();
+        bc.isTrigger = true;
+        bc.size = new Vector2(0.8f, 0.8f);
+
+        replay.StartReplay(record);
 
         // 3. Đưa Player về đích an toàn tuyệt đối
         player.transform.SetParent(null); // Thoát khỏi tấm ván di chuyển nếu đang đứng trên đó

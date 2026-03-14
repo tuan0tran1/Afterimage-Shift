@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 7f;
     public Transform respawnPoint;
     public AudioSource jumpSound;
+    public ParticleSystem jumpEffect; // Thêm biến lưu hiệu ứng hình ảnh (bụi) khi nhảy
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -23,6 +24,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            if (jumpSound != null) jumpSound.Play();
+            if (jumpEffect != null) jumpEffect.Play();
         }
     }
 
@@ -61,7 +64,8 @@ public class PlayerController : MonoBehaviour
     }
     void Jump()
     {
-        jumpSound.Play();
+        if (jumpSound != null) jumpSound.Play();
+        if (jumpEffect != null) jumpEffect.Play();
     }
 
 }

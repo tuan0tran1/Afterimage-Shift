@@ -5,7 +5,8 @@ public class PlayerRecorder : MonoBehaviour
 {
     public List<Vector3> positions = new List<Vector3>();
 
-    void Update()
+    // Thay đổi Update thành FixedUpdate để khắc phục lỗi chạy chậm/nhanh khi thay đổi FPS máy tính
+    void FixedUpdate()
     {
         positions.Add(transform.position);
     }

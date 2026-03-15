@@ -10,16 +10,31 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isGrounded;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
         float move = Input.GetAxisRaw("Horizontal");
         rb.linearVelocity = new Vector2(move * moveSpeed, rb.linearVelocity.y);
+
+        if (animator != null)
+        {
+            animator.SetBool("isWalking", Mathf.Abs(move) > 0.1f);
+            animator.SetBool("isJumping", !isGrounded);
+        }
+
+        if (spriteRenderer != null && Mathf.Abs(move) > 0.01f)
+        {
+            spriteRenderer.flipX = move < 0;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {

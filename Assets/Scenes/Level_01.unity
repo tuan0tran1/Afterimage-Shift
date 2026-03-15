@@ -1128,7 +1128,7 @@ MonoBehaviour:
   player: {fileID: 1271727243}
   ghostPrefab: {fileID: 4034009220317596055, guid: 04b661b10cc295a46a2272f9b1a905eb, type: 3}
   respawnPoint: {fileID: 425673067}
-  timeLimit: 25
+  timeLimit: 10
   timerText: {fileID: 799300023}
   winPanel: {fileID: 507488250}
   losePanel: {fileID: 1072939900}
@@ -2131,7 +2131,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ac6009b4338b582429f7ab522f4f7904, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

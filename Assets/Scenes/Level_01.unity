@@ -1127,15 +1127,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   player: {fileID: 1271727243}
   ghostPrefab: {fileID: 4034009220317596055, guid: 04b661b10cc295a46a2272f9b1a905eb, type: 3}
-  respawnPoint: {fileID: 425673067}
-  timeLimit: 10
   timerText: {fileID: 799300023}
+  timeLimit: 10
   winPanel: {fileID: 507488250}
   losePanel: {fileID: 1072939900}
   winSound: {fileID: 0}
   loseSound: {fileID: 0}
   winEffectPrefab: {fileID: 0}
-  loseEffectPrefab: {fileID: 0}
+  resetEffectPrefab: {fileID: 0}
 --- !u!4 &791971196
 Transform:
   m_ObjectHideFlags: 0
@@ -3371,17 +3370,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d529798ab4c5d8d44a48a39f9a13e543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  player: {fileID: 0}
-  ghostPrefab: {fileID: 0}
-  respawnPoint: {fileID: 0}
-  timeLimit: 20
-  timerText: {fileID: 0}
+  player: {fileID: 1271727243}
+  ghostPrefab: {fileID: 4034009220317596055, guid: 04b661b10cc295a46a2272f9b1a905eb, type: 3}
+  timerText: {fileID: 799300023}
+  timeLimit: 15
   winPanel: {fileID: 507488250}
   losePanel: {fileID: 1072939900}
   winSound: {fileID: 0}
   loseSound: {fileID: 0}
   winEffectPrefab: {fileID: 0}
-  loseEffectPrefab: {fileID: 0}
+  resetEffectPrefab: {fileID: 0}
 --- !u!4 &1979811814
 Transform:
   m_ObjectHideFlags: 0

@@ -1401,7 +1401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d529798ab4c5d8d44a48a39f9a13e543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  player: {fileID: 0}
+  player: {fileID: 1577150436}
   ghostPrefab: {fileID: 4034009220317596055, guid: 04b661b10cc295a46a2272f9b1a905eb, type: 3}
   timerText: {fileID: 799300023}
   timeLimit: 20
